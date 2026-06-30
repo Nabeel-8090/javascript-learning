@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <h3 id="display">0</h3>
+    <p>
+        <button onclick="
+            calculation += '1';
+            document.querySelector('#display').innerText = calculation;
+        ">1</button>
+        <button onclick="
+            calculation += '2';
+            document.querySelector('#display').innerText = calculation;
+        ">2</button>
+        <button onclick="
+            calculation += '3';
+            document.querySelector('#display').innerText = calculation;
+        ">3</button>
+    </p>
+    <p>
+        <button onclick="
+            calculation += '1';
+            document.querySelector('#display').innerText = calculation;
+        ">4</button>
+        <button onclick="
+            calculation += '2';
+            document.querySelector('#display').innerText = calculation;
+        ">5</button>
+        <button onclick="
+            calculation += '3';
+            document.querySelector('#display').innerText = calculation;
+        ">6</button>
+    </p>
+    <p>
+        <button onclick="
+            calculation += '1';
+            document.querySelector('#display').innerText = calculation;
+        ">7</button>
+        <button onclick="
+            calculation += '2';
+            document.querySelector('#display').innerText = calculation;
+        ">8</button>
+        <button onclick="
+            calculation += '3';
+            document.querySelector('#display').innerText = calculation;
+        ">9</button>
+    </p>
+    <p>
+        <button onclick="
+            calculation += ' + ';
+            document.querySelector('#display').innerText = calculation;
+        ">+</button>
+        <button onclick="
+            calculation += ' - ';
+            document.querySelector('#display').innerText = calculation;
+        ">-</button>
+        <button onclick="
+            calculation += ' * ';
+            document.querySelector('#display').innerText = calculation;
+        ">/</button>
+    </p>
+    <p>
+        <button onclick="
+            calculation += ' / ';
+            document.querySelector('#display').innerText = calculation;
+        ">/</button>
+        <button onclick="
+            calculation = '0';
+            document.querySelector('#display').innerText = calculation;
+        ">C</button>
+        <button onclick="
+            calculation = eval(calculation);
+            document.querySelector('#display').innerText = calculation;
+        ">=</button>
+    </p>
+
+    <script>
+        let calculation = '';
+    </script>
+</body>
+
+</html>
