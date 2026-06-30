@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Quantity</title>
+</head>
+<body>
+    <h3>Cart Quantity</h3>
+    <button id="showQuantity">Show Quantity</button>
+    <button id="addToCart">Add to Cart</button>
+    <button id="plus2">+2</button>
+    <button id="plus3">+3</button>
+    <button id="resetCart">Reset Cart</button>
+
+    <script>
+        let cartQuantity = 0;
+        document.getElementById("showQuantity").addEventListener("click", function() {
+            alert("Cart Quantity: " + cartQuantity);
+        });
+        document.getElementById("addToCart").addEventListener("click", function() {
+            cartQuantity++;
+        });
+        document.getElementById("plus2").addEventListener("click", function() {
+            cartQuantity += 2;
+        });
+        document.getElementById("plus3").addEventListener("click", function() {
+            cartQuantity += 3;
+        });
+        document.getElementById("resetCart").addEventListener("click", function() {
+            cartQuantity = 0;
+        });
+    </script>
+</body>
+</html>
