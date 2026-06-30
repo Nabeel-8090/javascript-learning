@@ -1,4 +1,3 @@
-````md
 # In this Lesson
 
 ## Concatenation (Combining Strings)
@@ -54,4 +53,3 @@ text
 ```
 
 > **Note:** Template literals use **backticks (` `)** instead of single (`'`) or double (`"`) quotes.
-````
