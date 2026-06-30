@@ -51,5 +51,3 @@ Output:
 some
 text
 ```
-
-> **Note:** Template literals use **backticks (` `)** instead of single (`'`) or double (`"`) quotes.
