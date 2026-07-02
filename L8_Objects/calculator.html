@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <h3 id="display">0</h3>
+    <p>
+        <button onclick="updateCalculation('1');">1</button>
+        <button onclick="updateCalculation('2');">2</button>
+        <button onclick="updateCalculation('3');">3</button>
+    </p>
+    <p>
+        <button onclick="updateCalculation('4');">4</button>
+        <button onclick="updateCalculation('5');">5</button>
+        <button onclick="updateCalculation('6');">6</button>
+    </p>
+    <p>
+        <button onclick="updateCalculation('7');">7</button>
+        <button onclick="updateCalculation('8');">8</button>
+        <button onclick="updateCalculation('9');">9</button>
+    </p>
+    <p>
+        <button onclick="updateCalculation('+');">+</button>
+        <button onclick="updateCalculation('-');">-</button>
+        <button onclick="updateCalculation('*');">*</button>
+    </p>
+    <p>
+        <button onclick="updateCalculation('/');">/</button>
+        <button onclick="updateCalculation('C');">C</button>
+        <button onclick="updateCalculation('=');">=</button>
+    </p>
+
+    <script>
+
+        let calculation = localStorage.getItem('calculation') || '';
+        document.querySelector('#display').innerText = calculation;
+
+        function updateCalculation(number) {
+            if(number === '=') {
+                calculation = eval(calculation);
+                localStorage.setItem('calculation', calculation);
+                document.querySelector('#display').innerText = calculation;
+            } else if (number === 'C') {
+                calculation = '';
+                localStorage.setItem('calculation', calculation);
+                document.querySelector('#display').innerText = calculation;
+            } else {
+                calculation += `${number}`;
+                localStorage.setItem('calculation', calculation);
+                document.querySelector('#display').innerText = calculation;
+            }
+        }
+
+    </script>
+</body>
+</html>
