@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+</head>
+<body>
+    <script>
+        const product = {
+            name: 'Socks',
+            price: 1090
+        };
+        console.log(product);
+        console.log(product.name);
+        console.log(product.price);
+        console.log(typeof product);
+
+        product.name = 'Cotton Socks';
+        console.log(product);
+
+        product.newProperty = true;
+        console.log(product);
+
+        delete product.newProperty;
+        console.log(product);
+
+
+        const product2 = {
+            name: 'shirt',
+            'delivery-time': '1 day',
+            rating : { // Nested Object
+                stars: 4.5,
+                count: 87
+            },
+            fun: function function1() {
+                console.log('function inside object');
+            }
+        };
+        console.log(product2);
+        console.log(product2.name); // bracket notation
+        console.log(product2['name']); // dot notation
+
+        console.log(product2['delivery-time']);
+        //console.log(product2.delivery-time); js takes '-' as minus sign
+
+        console.log(product2.rating.count);
+        product2.fun();
+
+        // JSON
+        console.log(JSON.stringify(product2));
+        console.log(typeof JSON.stringify(product2));
+
+        console.log(JSON.parse(JSON.stringify(product2)));
+
+        // localStorage
+        localStorage.setItem('message', 'hello'); // setItem()
+        console.log(localStorage.getItem('message')); // getItem()
+
+        // Auto-Boxing
+        console.log('hello'.length);
+        console.log('hello'.toUpperCase());
+        
+        // Objects are references
+        const object1 = {
+            message: 'hello'
+        };
+
+        // we are copying the reference
+        const object2 = object1; // copy by reference
+
+        object1.message = 'Good Job!';
+        console.log(object1);
+        console.log(object2);
+
+        const object3 = {
+            message: 'Good Job!'
+        };
+        console.log(object2 === object1); // true
+        console.log(object3 === object1); // false
+
+        // Shortcuts for objects
+        const object4 = {
+            message: 'Good Job!',
+            price: 799
+        };
+        // const message = object4.message;
+        const {message, price} = object4; // this shortcut is called destructing
+        console.log(message);
+        console.log(price);
+
+        //Shorthand Property
+        const object5 = {
+            // message: message (if property = variable-name)
+            message
+        };
+        console.log(object5);
+
+
+        // Shorthand Method
+        const object6 = {
+            message,
+            // method: function function1() {
+            //     console.log('method');
+            // }
+
+            method() {
+                console.log('method');
+            }
+        };
+        console.log(object6);
+        object6.method();
+    </script>
+</body>
+</html>

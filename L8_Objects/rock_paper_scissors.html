@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 30px;
+        }
+
+        .emoji {
+            width: 100px;
+            height: 100px;
+            font-size: 48px;
+            border: 3px solid #333;
+            border-radius: 50%;
+            background-color: white;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: all 0.2s ease;
+        }
+
+        .emoji:hover {
+            background-color: #e9e9e9;
+            transform: scale(1.08);
+        }
+
+        .emoji:active {
+            transform: scale(0.95);
+        }
+
+        #result {
+            margin-top: 35px;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        #visual {
+            font-size: 26px;
+            margin-top: 15px;
+        }
+
+        #stat {
+            margin-top: 35px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        #resetBtn {
+            margin-top: 20px;
+            padding: 12px 22px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        #resetBtn:hover {
+            background-color: #555;
+        }
+
+        #resetBtn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+
+    <button class="emoji" onclick="playGame('rock');">✊</button>
+    <button class="emoji" onclick="playGame('paper');">✋</button>
+    <button class="emoji" onclick="playGame('scissors');">✌️</button>
+
+    <h3 id="result"></h3>
+    <h3 id="visual"></h3>
+    <h4 id="stat">Wins: 0, Losses: 0, Ties: 0</h4>
+
+    <button id="resetBtn" onclick="
+        score.wins = 0; score.losses = 0; score.ties = 0;
+        localStorage.setItem('score', JSON.stringify(score));
+        document.getElementById('result').innerText = '';
+        document.getElementById('visual').innerText = '';
+        document.getElementById('stat').innerText = `Wins: 0, Losses: 0, Ties: 0`;
+    ">Reset Score</button>
+
+    <script>
+        const score = JSON.parse(localStorage.getItem('score')) || {
+            wins: 0,
+            losses: 0,
+            ties: 0
+        };
+
+        document.getElementById('stat').innerText = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+
+        function pickComputerMove() {
+            const randomNumber = Math.random();
+
+            if (randomNumber >= 0 && randomNumber < 1/3) {
+                return 'rock';
+            } else if (randomNumber >= 1/3 && randomNumber < 2/3) {
+                return 'paper';
+            } else {
+                return 'scissors';
+            }
+        }
+
+        function displayResult(result, myMove, computerMove) {
+            if(result === 'Tie') {
+                score.ties++;
+            } else if (result === 'You Win') {
+                score.wins++;
+            } else {
+                score.losses++;
+            }
+
+            localStorage.setItem('score', JSON.stringify(score));
+
+            document.getElementById('result').innerText = result;
+            document.getElementById('stat').innerText = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+            document.getElementById('visual').innerText = `You ${myMove} - Computer ${computerMove}`;
+        }
+
+        function playGame(myMove) {
+
+            const computerMove = pickComputerMove();
+
+            if (myMove === 'rock') {
+                if (computerMove === 'rock') {
+                    displayResult('Tie', '✊', '✊');
+                } else if (computerMove === 'paper') {
+                    displayResult('You Lose', '✊', '✋');
+                } else if (computerMove === 'scissors') {
+                    displayResult('You Win', '✊', '✌️');
+                }
+
+            } else if (myMove === 'paper') {
+                if (computerMove === 'rock') {
+                    displayResult('You Win', '✋', '✊');
+                } else if (computerMove === 'paper') {
+                    displayResult('Tie', '✋', '✋');
+                } else if (computerMove === 'scissors') {
+                    displayResult('You Lose', '✋', '✌️');
+                }
+
+            } else if (myMove === 'scissors') {
+                if (computerMove === 'rock') {
+                    displayResult('You Lose', '✌️', '✊');
+                } else if (computerMove === 'paper') {
+                    displayResult('You Win', '✌️', '✋');
+                } else if (computerMove === 'scissors') {
+                    displayResult('Tie', '✌️', '✌️');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
