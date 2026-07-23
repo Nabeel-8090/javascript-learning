@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Projects</title>
+</head>
+<body>
+    <h2>YouTube Subscribe Button</h2>
+    <button class="subscribe-btn">Subscribe</button>
+    
+    <br>
+    <br>
+
+    <h2>Amazon Shipping Calculator</h2>
+    <h3>Orders under $40 = +$10 shipping.</h3>
+    <h3>Orders over $40 = FREE shipping.</h3>
+    <input type="number" placeholder="Cost of order">
+    <button class="calculate-btn">Calculate</button>
+    <h2 class="calculated-result"></h2>
+
+    <script>
+        document.querySelector('.subscribe-btn').addEventListener('click', function() {
+            if (document.querySelector('.subscribe-btn').innerText === 'Subscribe') {
+                document.querySelector('.subscribe-btn').innerText = 'Subscribed';
+            } else {
+                document.querySelector('.subscribe-btn').innerText = 'Subscribe';
+            }
+        });
+
+        const inputElement = document.querySelector('input');
+        const calculateBtn = document.querySelector('.calculate-btn');
+        function calculate() {
+            let result = 0;
+            if (inputElement.value < 40) {
+                result = Number(inputElement.value) + 10;
+            } else {
+                result = Number(inputElement.value);
+            }
+            document.querySelector('.calculated-result').innerHTML = `$${result}`;
+        }
+
+        calculateBtn.addEventListener('click', () => {
+            calculate();
+        });
+        inputElement.addEventListener('keydown', (event) => {
+            if (event.key === "Enter") {
+                calculate();
+            }
+        });
+    </script>
+</body>
+</html>
