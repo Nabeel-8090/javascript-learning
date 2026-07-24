@@ -1,0 +1,66 @@
+/* 10a. Amazon Button */
+.amazon-btn {
+    border: none;
+    background-color: rgb(255, 216, 20);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* 10b. Uber Buttons */
+.uber-btns {
+    border: none;
+    background-color: rgb(230, 230, 230);
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#request-btn {
+    background-color: black;
+    color: white;
+}
+
+/* 10c. */
+.js-button {
+    border: none;
+    background-color: rgb(230, 230, 230);
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 10d. */
+.gaming-btn {
+    border: none;
+    background-color: rgb(230, 230, 230);
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.is-toggled {
+    background-color: black;
+    color: white;
+}
+
+/* 10e & 10g */
+.gaming-music-tech-btns {
+    border: none;
+    background-color: rgb(230, 230, 230);
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.is-toggled {
+    background-color: black;
+    color: white;
+}
