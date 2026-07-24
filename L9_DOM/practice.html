@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+</head>
+<body>
+     <button>9a</button>
+     <button class="second-btn">9b</button><br><br>
+
+     <button class="coins">heads</button>
+     <button class="coins">tails</button>
+     <p></p>
+
+     <input>
+     <button class="submit-btn">Submit</button>
+     <p class="submit-output"></p>
+
+    <script>
+        console.log(document.querySelector('button').innerHTML);
+
+        document.querySelector(".second-btn").innerText = '9b done!';
+
+        const buttons = document.querySelectorAll(".coins");
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                document.querySelector("p").innerText = `You chose: ${button.innerText}`;
+            });
+        });
+
+        function displayResult() {
+            const inputElement = document.querySelector("input").value;
+            document.querySelector(".submit-output").innerText = `Your name is: ${inputElement}`;
+        }
+
+        document.querySelector(".submit-btn").addEventListener("click", () => {
+            displayResult();
+        });
+
+        document.querySelector("input").addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                displayResult();
+            }
+        });
+    </script>
+</body>
+</html>
