@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise - 9g & 9e</title>
+</head>
+<body>
+    <h2>Amazon Shipping Calculator</h2>
+    <h3>Orders under $40 = +$10 shipping.</h3>
+    <h3>Orders over $40 = FREE shipping.</h3>
+    <input placeholder="Cost of order">
+    <button class="calculate-btn">Calculate</button>
+    <h2 class="calculated-result"></h2>
+
+    <br><br>
+    <input class="onkeyup">
+    <p></p>
+
+    <script>
+        const inputElement = document.querySelector('input');
+        const calculateBtn = document.querySelector('.calculate-btn');
+        function calculate() {
+            let result = 0;
+            if (inputElement.value < 40) {
+                result = ((Number(inputElement.value))*100 + 1000)/100;
+            } else {
+                result = Number(inputElement.value);
+            }
+            document.querySelector('.calculated-result').innerHTML = `$${result}`;
+        }
+
+        calculateBtn.addEventListener('click', () => {
+            calculate();
+        });
+        inputElement.addEventListener('keydown', (event) => {
+            if (event.key === "Enter") {
+                calculate();
+            }
+        });
+
+        document.querySelector(".onkeyup").addEventListener("keydown", (event) => {
+            let p = document.querySelector("p")
+            p.innerText = p.innerText + event.key;
+        });
+    </script>
+</body>
+</html>
