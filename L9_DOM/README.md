@@ -241,6 +241,17 @@ alert("Hello");
 
 ---
 
+## Common methods
+- `document.createElement("div");`   // Create element
+- `element.textContent = "Text";`    // Add text
+- `element.innerHTML = "<b>Hi</b>";` // Add HTML
+- `element.classList.add("box");`    // Add class
+- `element.setAttribute("id", "myDiv");` // Set attribute
+- `parent.appendChild(element);`     // Add as last child
+- `parent.prepend(element);`         // Add as first child
+
+---
+
 ## Summary
 
 - The **DOM** connects JavaScript with HTML.
