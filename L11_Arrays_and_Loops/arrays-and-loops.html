@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays & Loops</title>
+</head>
+<body>
+    <script>
+        const myArray = [10, 20, 30, 40]
+        console.log(myArray);
+
+        console.log(myArray[0]);
+        myArray[0] = 50;
+        console.log(myArray[0]);
+
+        [1, 'Hello', true, {name: 'socks'}, [1, 2]]
+        console.log(typeof [1, 2]); // object
+
+        console.log(Array.isArray([1, 2])); // true
+
+        console.log(myArray.length);
+        myArray.push(100);
+        console.log(myArray); // [10, 20, 30, 40, 100]
+
+        myArray.splice(0, 2);
+        console.log(myArray); // [30, 40, 100]
+
+        // While Loop
+        let i = 1;
+        while (i <= 5) {
+            console.log(i);
+            i += 2;
+        }
+
+        // For Loop
+        for (let i=1; i<=5; i+=2) {
+            console.log(i);
+        }
+
+        const todoList = ['make dinner', 'wash dishes', 'watch youtube'];
+        for (let i=0; i<todoList.length; i++) {
+            console.log(todoList[i]);
+        }
+
+        const nums = [1, 2, 3];
+        let total = 0; // Accumulator Variable
+        for (let i=0; i<nums.length; i++) {
+            total += nums[i];
+        }
+        console.log(total);
+
+        const numsDoubled = [];
+        for (let i=0; i<nums.length; i++) {
+            numsDoubled.push(nums[i] * 2);
+        }
+        console.log(numsDoubled);
+    </script>
+</body>
+</html>
