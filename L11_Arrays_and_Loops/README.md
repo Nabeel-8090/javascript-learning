@@ -273,3 +273,212 @@ JavaScript applications generally follow three steps:
 ---
 
 # Arrays & Loops (Part 2)
+
+## Arrays are References
+
+Arrays are **reference types**.
+
+```javascript
+const array1 = [1, 2, 3];
+```
+
+The variable `array1` does **not** store the actual array.
+
+Instead, it stores a **reference (memory address)** to the array.
+
+---
+
+## Copying an Array Reference
+
+```javascript
+const array1 = [1, 2, 3];
+
+const array2 = array1;
+```
+
+`array2` is **not a new array**.
+
+It is another reference to the **same array**.
+
+```javascript
+array2.push(4);
+
+console.log(array1); // [1, 2, 3, 4]
+console.log(array2); // [1, 2, 3, 4]
+```
+
+Since both variables reference the same array, modifying one also changes the other.
+
+---
+
+## Creating a Copy of an Array
+
+To create a **new copy** of an array, use `slice()`.
+
+```javascript
+const array1 = [1, 2, 3, 4];
+
+const array3 = array1.slice();
+
+array3.push(5);
+
+console.log(array1); // [1, 2, 3, 4]
+console.log(array3); // [1, 2, 3, 4, 5]
+```
+
+Now the arrays are independent.
+
+---
+
+## `slice()` vs `splice()`
+
+Although their names are similar, they serve different purposes.
+
+### `slice()`
+
+- Creates a copy of an array (or part of an array).
+- Does **not** modify the original array.
+
+```javascript
+const numbers = [1, 2, 3];
+
+const copy = numbers.slice();
+
+console.log(copy); // [1, 2, 3]
+```
+
+---
+
+### `splice()`
+
+- Adds or removes elements from an array.
+- **Modifies** the original array.
+
+```javascript
+const numbers = [1, 2, 3, 4];
+
+numbers.splice(1, 2);
+
+console.log(numbers); // [1, 4]
+```
+
+---
+
+# Array Destructuring
+
+Destructuring is a shortcut for extracting values from an array.
+
+```javascript
+const [firstValue, secondValue, thirdValue] = [1, 2, 3];
+
+console.log(firstValue); // 1
+console.log(secondValue); // 2
+console.log(thirdValue); // 3
+```
+
+---
+
+# More About Loops
+
+There are two useful keywords when working with loops.
+
+## `break`
+
+`break` exits a loop immediately.
+
+## `continue`
+
+`continue` skips the current iteration and moves to the next one.
+
+Example:
+
+```javascript
+for (let i = 1; i <= 10; i++) {
+  if (i % 3 === 0) {
+    continue;
+  }
+
+  console.log(i);
+
+  if (i === 8) {
+    break;
+  }
+}
+```
+
+Output:
+
+```
+1
+2
+4
+5
+7
+8
+```
+
+---
+
+## Using `continue` in a `while` Loop
+
+Be careful when using `continue` inside a `while` loop.
+
+```javascript
+let i = 1;
+
+while (i <= 10) {
+  if (i % 3 === 0) {
+    i++; // Important!
+    continue;
+  }
+
+  console.log(i);
+  i++;
+}
+```
+
+> **Note:** Always update the loop variable before `continue`; otherwise, the loop may become infinite.
+
+---
+
+# Using Loops Inside Functions
+
+Loops are commonly used inside functions to process arrays.
+
+Example: Double every number in an array.
+
+```javascript
+function doubleArray(nums) {
+  const numsDoubled = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    numsDoubled.push(nums[i] * 2);
+  }
+
+  return numsDoubled;
+}
+
+console.log(doubleArray([0, 1, 3]));
+```
+
+Output:
+
+```
+[0, 2, 6]
+```
+
+---
+
+# Summary
+
+In this lesson, you learned:
+
+- Arrays are **reference types**.
+- Copying an array variable copies the **reference**, not the array.
+- Use `slice()` to create a copy of an array.
+- `slice()` and `splice()` have different purposes.
+- Use **array destructuring** to extract values easily.
+- `break` exits a loop early.
+- `continue` skips the current iteration.
+- Be careful with `continue` inside `while` loops.
+- Loops are commonly used inside functions to process arrays.
