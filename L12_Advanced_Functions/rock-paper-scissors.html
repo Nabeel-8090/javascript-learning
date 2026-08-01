@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,7 +57,8 @@
             font-weight: bold;
         }
 
-        #resetBtn, #autoplay-btn {
+        #resetBtn,
+        #autoplay-btn {
             margin-top: 20px;
             padding: 12px 22px;
             font-size: 18px;
@@ -68,36 +70,33 @@
             transition: background-color 0.2s ease;
         }
 
-        #resetBtn:hover, #autoplay-btn:hover {
+        #resetBtn:hover,
+        #autoplay-btn:hover {
             background-color: #555;
         }
 
-        #resetBtn:active, #autoplay-btn:active {
+        #resetBtn:active,
+        #autoplay-btn:active {
             transform: scale(0.98);
         }
     </style>
 </head>
+
 <body>
     <h1>Rock Paper Scissors</h1>
 
-    <button class="emoji" onclick="playGame('rock');">✊</button>
-    <button class="emoji" onclick="playGame('paper');">✋</button>
-    <button class="emoji" onclick="playGame('scissors');">✌️</button>
+    <button class="emoji">✊</button>
+    <button class="emoji">✋</button>
+    <button class="emoji">✌️</button>
 
     <h3 id="result"></h3>
     <h3 id="visual"></h3>
     <h4 id="stat">Wins: 0, Losses: 0, Ties: 0</h4>
 
-    <button id="resetBtn" onclick="
-        score.wins = 0; score.losses = 0; score.ties = 0;
-        localStorage.setItem('score', JSON.stringify(score));
-        document.getElementById('result').innerText = '';
-        document.getElementById('visual').innerText = '';
-        document.getElementById('stat').innerText = `Wins: 0, Losses: 0, Ties: 0`;
-    ">Reset Score</button>
-    <button id="autoplay-btn" onclick="
-        autoPlay();
-    ">Auto Play</button>
+    <button id="resetBtn">Reset Score</button>
+    <button id="autoplay-btn">Auto Play</button>
+
+
 
     <script>
         const score = JSON.parse(localStorage.getItem('score')) || {
@@ -108,12 +107,39 @@
 
         document.getElementById('stat').innerText = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
 
+        const emojiButtons = document.querySelectorAll(".emoji");
+        emojiButtons.forEach((emojiBtn) => {
+            emojiBtn.addEventListener("click", () => {
+                if (emojiBtn.innerHTML === '✊') {
+                    playGame('rock');
+                } else if (emojiBtn.innerHTML === '✋') {
+                    playGame('paper')
+                } else {
+                    playGame('scissors')
+                }
+            });
+        });
+
+        const resetBtn = document.querySelector("#resetBtn");
+        resetBtn.addEventListener("click", () => {
+            score.wins = 0; score.losses = 0; score.ties = 0;
+            localStorage.setItem('score', JSON.stringify(score));
+            document.getElementById('result').innerText = '';
+            document.getElementById('visual').innerText = '';
+            document.getElementById('stat').innerText = `Wins: 0, Losses: 0, Ties: 0`;
+        });
+
+        const autoplayBtn = document.querySelector("#autoplay-btn");
+        autoplayBtn.addEventListener("click", () => {
+            autoPlay();
+        });
+
         function pickComputerMove() {
             const randomNumber = Math.random();
 
-            if (randomNumber >= 0 && randomNumber < 1/3) {
+            if (randomNumber >= 0 && randomNumber < 1 / 3) {
                 return 'rock';
-            } else if (randomNumber >= 1/3 && randomNumber < 2/3) {
+            } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
                 return 'paper';
             } else {
                 return 'scissors';
@@ -121,7 +147,7 @@
         }
 
         function displayResult(result, myMove, computerMove) {
-            if(result === 'Tie') {
+            if (result === 'Tie') {
                 score.ties++;
             } else if (result === 'You Win') {
                 score.wins++;
@@ -188,4 +214,5 @@
         }
     </script>
 </body>
+
 </html>
