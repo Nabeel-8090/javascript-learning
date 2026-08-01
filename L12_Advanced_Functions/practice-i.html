@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice I</title>
+</head>
+<body>
+    <button class="startBtn">Start</button><br><br><br>
+
+    <button class="addToCartBtn">Add to Cart</button>
+    <p class="added"></p><br><br>
+
+    <button class="addBtn">Add</button>
+    <button class="removeBtn">Remove</button>
+
+    <script>
+        const add = function () {
+            console.log(2 + 3);
+        }
+
+        function runTwice(func) {
+            func();
+            func();
+        }
+
+        runTwice(function() { console.log('12b')} );
+        runTwice(add);
+
+
+        const startBtn = document.querySelector(".startBtn");
+
+        startBtn.addEventListener("click", () => {
+            setTimeout(function () {
+                startBtn.innerHTML = 'Finished!';
+            }, 1000);
+            startBtn.innerHTML = 'Loading';
+        });
+
+        const addToCartBtn = document.querySelector(".addToCartBtn");
+        let timeoutId;
+        addToCartBtn.addEventListener("click", () => {
+            document.querySelector(".added").innerHTML = 'Added';
+
+            clearTimeout(timeoutId);
+
+            timeoutId = setTimeout(function () {
+                document.querySelector(".added").innerHTML = '';
+            }, 2000);
+        });
+
+        let messages = 2;
+        const addBtn = document.querySelector(".addBtn");
+        addBtn.addEventListener("click", () => {
+            messages++;
+            displayNotification()
+        });
+
+        const removeBtn = document.querySelector(".removeBtn");
+        removeBtn.addEventListener("click", () => {
+            if (messages > 0) {
+                messages--;
+            }
+            if (messages === 0) {
+                stopNotification();
+            }
+        });
+
+        let intervalID;
+        let isDisplayingNotification;
+        displayNotification();
+        function displayNotification() {
+            if (isDisplayingNotification) {
+                return;
+            }
+
+            isDisplayingNotification = true;
+
+            intervalID = setInterval(function () {
+                if (document.title === 'Practice I') {
+                    document.title = `(${messages}) New messages`;
+                } else {
+                    document.title = 'Practice I';
+                }
+            }, 1000);
+        }
+
+        function stopNotification() {
+            isDisplayingNotification = false;
+
+            clearInterval(intervalID);
+            document.title = 'Practice I';
+        }
+    </script>
+</body>
+</html>
