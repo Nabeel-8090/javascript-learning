@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice II</title>
+</head>
+<body>
+    <script>
+        function search(array) {
+            for (let i=0; i<array.length; i++) {
+                if (array[i] === 'search') {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        console.log(search(['hello', 'world', 'search', 'good', 'search']));
+        console.log(search(['not', 'found']));
+
+
+        function findIndex(array, word) {
+            for (let i=0; i<array.length; i++) {
+                if (array[i] === word) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        console.log(findIndex(['green', 'red', 'blue', 'red'], 'red'));
+        console.log(findIndex(['green', 'red', 'blue', 'red'], 'yellow'));
+
+
+        function removeEggs(foods) {
+            const newFoods = foods.slice();
+            newFoods.reverse();
+
+            const result = [];
+            let count = 1;
+
+            for (let i=0; i<newFoods.length; i++) {
+                if (newFoods[i] === 'egg' && count <= 2) {
+                    count++;
+                    continue;
+                }
+                result.push(newFoods[i]);
+            }
+            return result.reverse();
+        }
+        const foods = ['egg', 'apple', 'egg', 'egg', 'ham'];
+        console.log(removeEggs(foods));
+        console.log(foods);
+
+
+        // Challenge Exercises
+        for (let i=1; i<=20; i++) {
+            if (i % 3 === 0 && i % 5 !== 0) {
+                console.log("Fizz");
+                continue;
+            } else if (i % 5 === 0 && i % 3 !== 0) {
+                console.log("Buzz");
+                continue;
+            } else if (i % 3 === 0 && i % 5 == 0) {
+                console.log("FizzBuzz");
+                continue;
+            }
+            console.log(i);
+        }
+
+
+        function findIndex(array, word) {
+            for (let i=0; i<array.length; i++) {
+                if (array[i] === word) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        function unique(array) {
+            const uniqueArray = [];
+            for (let i=0; i<array.length; i++) {
+                if (findIndex(uniqueArray, array[i]) === -1) {
+                    uniqueArray.push(array[i]);
+                }
+            }
+            return uniqueArray;
+        }
+        console.log(unique(['green', 'red', 'blue', 'red'])); // ['green', 'red', 'blue']
+        console.log(unique(['red', 'green', 'green', 'red'])); // ['red', 'green']
+    </script>
+</body>
+</html>
