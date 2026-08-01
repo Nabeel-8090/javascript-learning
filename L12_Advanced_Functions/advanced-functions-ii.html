@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Functions II</title>
+</head>
+<body>
+    <button class="clickBtn">Click</button>
+
+    <script>
+        const regularFunction = function (param1, param2) {
+            console.log("Arrow Function");
+        }
+        regularFunction();
+
+        const arrowFunction = (param1, param2) => {
+            console.log("Arrow Function");
+        };
+        arrowFunction();
+
+        const oneParam = param => {
+            console.log(param + 1);
+        };
+        oneParam(2); // 3
+
+        const oneLine = () => 2 + 3;
+        console.log(oneLine()); // 5
+
+        const object2 = {
+            method: () => {
+
+            },
+            method() {
+
+            }
+        };
+
+        const clickBtn = document.querySelector(".clickBtn");
+        const eventListener = () => {
+            console.log("click");
+        };
+        clickBtn.addEventListener("click", eventListener);
+        clickBtn.removeEventListener("click", eventListener);
+
+        clickBtn.addEventListener("click", () => {
+            console.log("CLICK2");
+        });
+
+        // 2 more array methods:
+        console.log([1, -3, 5].filter((value, index) => { // .filter()
+            return value >= 0;
+        }));
+
+        console.log([1, 1, 3].map((value, index) => { // .map()
+            return value + 10; // [11, 11, 13]
+        }));
+
+        console.log([1, 1, 3].map(value => value * 2));
+
+        // Closure
+        [1, 2, 3, 4, 5].forEach((value, idx) => {
+            console.log(idx);
+        });
+        console.log(idx); // showing error
+    </script>
+</body>
+</html>
