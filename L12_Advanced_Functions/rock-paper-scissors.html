@@ -142,7 +142,7 @@
         function autoPlay() {
             if (!isAutoPlaying) {
                 document.querySelector("#autoplay-btn").innerHTML = 'Stop Play';
-                intervalId = setInterval(function() {
+                intervalId = setInterval(() => {
                     const playerMove = pickComputerMove();
                     playGame(playerMove);
                 }, 1000);
