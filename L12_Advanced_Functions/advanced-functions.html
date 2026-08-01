@@ -12,7 +12,7 @@
             console.log('Hello');
         }
 
-        const function1 = function() { // Anonymous Function
+        const function1 = function () { // Anonymous Function
             console.log('HELLO');
         }
 
@@ -22,7 +22,7 @@
 
         const object1 = {
             num: 2,
-            fun: function() {
+            fun: function () {
                 console.log('Hello');
             }
         };
@@ -37,20 +37,20 @@
         function run(param) {
             param();
         }
-        run(function() {
+        run(function () {
             console.log('Hi')
         });
 
 
         // setTimeout()
-        setTimeout(function() { // Asynchronous Code
+        setTimeout(function () { // Asynchronous Code
             console.log('timeout');
         }, 3000);
 
         console.log('next line');
 
         // setInterval()
-        // setInterval(function() { // Asynchronous Code
+        // setInterval(function () { // Asynchronous Code
         //     console.log('interval');
         // }, 3000);
         console.log('next line 2');
@@ -61,7 +61,7 @@
             'make dinner',
             'wash dishes',
             'watch youtube'
-        ].forEach(function(value, index) {
+        ].forEach(function (value, index) {
             if (value === 'wash dishes') {
                 return;
             }
