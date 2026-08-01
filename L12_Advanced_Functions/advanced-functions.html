@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Functions</title>
+</head>
+<body>
+    <script>
+        greeting(); // Hoisting
+        function greeting() {
+            console.log('Hello');
+        }
+
+        const function1 = function() { // Anonymous Function
+            console.log('HELLO');
+        }
+
+        console.log(function1);
+        console.log(typeof function1); // function
+        function1(); // HELLO
+
+        const object1 = {
+            num: 2,
+            fun: function() {
+                console.log('Hello');
+            }
+        };
+        object1.fun(); // method (function saved inside an object)
+
+
+        function display(param) {
+            console.log(param);
+        }
+        display(2); // passing a value into a function
+
+        function run(param) {
+            param();
+        }
+        run(function() {
+            console.log('Hi')
+        });
+
+
+        // setTimeout()
+        setTimeout(function() { // Asynchronous Code
+            console.log('timeout');
+        }, 3000);
+
+        console.log('next line');
+
+        // setInterval()
+        // setInterval(function() { // Asynchronous Code
+        //     console.log('interval');
+        // }, 3000);
+        console.log('next line 2');
+
+
+        // Another way to loop through an array
+        [
+            'make dinner',
+            'wash dishes',
+            'watch youtube'
+        ].forEach(function(value, index) {
+            if (value === 'wash dishes') {
+                return;
+            }
+            console.log(value, index);
+        });
+    </script>
+</body>
+</html>
