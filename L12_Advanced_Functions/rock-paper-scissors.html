@@ -79,6 +79,50 @@
         #autoplay-btn:active {
             transform: scale(0.98);
         }
+
+        .yesBtn,
+        .noBtn {
+            padding: 10px 10px;
+            font-size: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .yesBtn:hover,
+        .noBtn:hover {
+            background-color: #555;
+        }
+
+        .yesBtn:active,
+        .noBtn:active {
+            transform: scale(0.98);
+        }
+
+        .notification {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            width: fit-content;
+            margin: 20px auto;
+
+            padding: 10px 15px;
+            background-color: grey;
+            border-radius: 8px;
+        }
+
+        .notification p {
+            margin: 0;
+        }
+
+        .notification:empty {
+            display: none;
+        }
     </style>
 </head>
 
@@ -96,7 +140,7 @@
     <button id="resetBtn">Reset Score</button>
     <button id="autoplay-btn">Auto Play</button>
 
-
+    <div class="notification"></div>
 
     <script>
         const score = JSON.parse(localStorage.getItem('score')) || {
@@ -122,11 +166,29 @@
 
         const resetBtn = document.querySelector("#resetBtn");
         resetBtn.addEventListener("click", () => {
-            score.wins = 0; score.losses = 0; score.ties = 0;
-            localStorage.setItem('score', JSON.stringify(score));
-            document.getElementById('result').innerText = '';
-            document.getElementById('visual').innerText = '';
-            document.getElementById('stat').innerText = `Wins: 0, Losses: 0, Ties: 0`;
+            if (score.wins !== 0 || score.losses !== 0 || score.ties !== 0) {
+                document.querySelector(".notification").innerHTML = `<p>Are you sure you want to reset the score?</p>
+                                                                <button class="yesBtn">Yes</button>
+                                                                <button class="noBtn">No</button>`;
+
+                document.querySelector(".yesBtn").addEventListener("click", () => {
+                    score.wins = 0; score.losses = 0; score.ties = 0;
+                    localStorage.setItem('score', JSON.stringify(score));
+                    document.getElementById('result').innerText = '';
+                    document.getElementById('visual').innerText = '';
+                    document.getElementById('stat').innerText = `Wins: 0, Losses: 0, Ties: 0`;
+                    document.querySelector(".notification").innerHTML = '';
+                });
+
+                document.querySelector(".noBtn").addEventListener("click", () => {
+                    document.querySelector(".notification").innerHTML = '';
+                });
+            } else {
+                document.querySelector(".notification").innerHTML = `<p>The score has already been reset.</p>`;
+                setTimeout(() => {
+                    document.querySelector(".notification").innerHTML = '';
+                }, 1500);
+            }
         });
 
         const autoplayBtn = document.querySelector("#autoplay-btn");
