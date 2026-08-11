@@ -35,7 +35,7 @@ export function renderOrderSummary() {
                             ${product.name}
                         </div>
                         <div class="product-price js-product-price-${product.id}">
-                            $${formatCurrency(product.priceCents)}
+                            ${product.getPrice()}
                         </div>
                         <div class="product-quantity js-product-quantity-${product.id}">
                             <span>
@@ -134,5 +134,5 @@ export function renderOrderSummary() {
         });
     });
 
-    //renderCheckoutHeader();
+    renderCheckoutHeader();
 }
