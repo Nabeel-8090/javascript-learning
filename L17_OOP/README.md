@@ -87,3 +87,94 @@ class Cart {
 ```
 
 # Inheritance
+
+Lets us reuse code between classes. A **child class** inherits from a **parent class**.
+
+```javascript
+super(productDetails); // super() calls the constructor of the parent class
+```
+
+## Method Overriding
+
+**Method overriding** => override/replace the parent's method.
+
+## Polymorphism
+
+**Polymorphism** => use a method without knowing the class.
+
+## More Details About Classes
+
+**How to test classes:** testing classes is the same as normal tests.
+
+## Built-in Classes
+
+**Built-in classes** => classes that are provided by the language.
+
+### `new Date()`
+
+Generates an object that represents the current date.
+
+```javascript
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString());
+console.log(date.toLocaleDateString());
+```
+
+## More Details About "this"
+
+`this` lets an object access its own properties.
+
+```javascript
+console.log(this); // undefined
+```
+
+Originally in JavaScript, `this` = `window`. When they released JavaScript modules, inside a module, `this` = `undefined`.
+
+### Using "this" Inside a Function
+
+```javascript
+function logThis() {
+  console.log(this);
+}
+logThis(); // undefined
+logThis.call('hello'); // hello
+```
+
+Not inside of any object, so there's nothing for `this` to point to. `this` = `undefined`.
+
+### Changing "this" Inside a Function
+
+Inside a function, we can change `this` to whatever we want. Functions have a method `.call()`.
+
+```javascript
+function logThis(param1, param2) {
+    console.log(this);
+}
+logThis.call('hello', param1, param2);
+```
+
+### Arrow Functions and "this"
+
+Arrow functions do **not** change the value of `this`.
+
+```javascript
+const object3 = {
+  method: () => {
+    console.log(this);
+  }
+};
+object3.method(); // undefined
+```
+
+Inside an arrow function, `this` is undefined — `this` keeps the value that it had outside the arrow function.
+
+**Why are arrow functions designed this way?**
+
+![Common problem in JS - 1](./common-problem-in-js-1.png)
+![Common problem in JS - 2](./common-problem-in-js-2.png)
+
+## Summary of "this"
+1. Inside a method, `this` points to the outer object
+2. Inside a function, `this` = `undefined` (but we can change it using `.call()`)
+3. Arrow functions do not change the value of `this`
