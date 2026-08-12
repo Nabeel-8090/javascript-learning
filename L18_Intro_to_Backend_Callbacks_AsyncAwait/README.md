@@ -108,3 +108,57 @@ beforeAll((done) => {
 ```
 
 # Promises and Fetch
+
+## Promises
+
+- A better way to handle asynchronous code
+- Similar to Jasmine's `done()` function
+- Let us wait for code to finish, before going to the next step
+
+Promise is a class:
+
+```javascript
+new Promise((resolve) => {
+
+});
+```
+
+`resolve` => it is a function
+- Similar to Jasmine's `done()` function
+- Lets us control when to go to the next step
+
+The executor function (the function passed into `new Promise()`) runs **immediately** when the promise is created.
+
+![Promises](./image02.png)
+
+> **Note:** JavaScript is still single-threaded — promises don't let JavaScript run multiple things in parallel. What they actually do is let JavaScript **start a slow operation (like a network request) and keep running other code while waiting**, instead of blocking everything until it finishes. When the slow operation completes, the promise's `resolve` function is called and the rest of our code continues.
+
+### Why Do We Use Promises?
+
+Multiple callbacks cause a lot of nesting.
+
+If we have lots of callbacks, our code will become more and more nested (this is sometimes called "callback hell"). Promises solve this problem — they let us flatten our code.
+
+**Use promises instead of callbacks.** Promises keep our code more flat.
+
+### Running Multiple Promises at Once
+
+`Promise.all()`
+- Lets us run multiple promises at the same time
+- And wait for all of them to finish
+
+## Fetch
+
+`fetch()` = a better way to make HTTP requests.
+
+- `fetch()` uses a promise
+- By default, `fetch()` will make a `GET` request
+- It's a better way to make requests instead of `XMLHttpRequest()`
+
+```javascript
+fetch('https://supersimplebackend.dev/products').then((response) => {
+    return response.json();
+});
+```
+
+`response.json()` is asynchronous — it returns a promise.
