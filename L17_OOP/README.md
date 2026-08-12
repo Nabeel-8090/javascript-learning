@@ -86,6 +86,8 @@ class Cart {
 }
 ```
 
+> A property can be public, private, or protected (protected = it can be accessed inside a class and its child classes). Object-Oriented Programming is less popular in JavaScript because it is missing some features of OOP, like protected properties.
+
 # Inheritance
 
 Lets us reuse code between classes. A **child class** inherits from a **parent class**.
