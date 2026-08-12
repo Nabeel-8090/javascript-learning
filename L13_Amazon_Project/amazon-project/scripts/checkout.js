@@ -1,23 +1,18 @@
 import { renderOrderSummary } from './checkout/orderSummary.js';
 import { renderPaymentSummary } from './checkout/paymentSummary.js';
 import { renderCheckoutHeader } from './checkout/checkoutHeader.js';
-import { loadProducts } from '../data/products.js';
+import { loadProductsFetch } from '../data/products.js';
 import { loadCart } from '../data/cart.js';
 
 Promise.all([
-    new Promise((resolve) => {
-        loadProducts(() => {
-            resolve('value1');
-        });
-    }),
+    loadProductsFetch(),
     new Promise((resolve) => {
         loadCart(() => {
-            resolve('value2');
+            resolve('value');
         });
     })
 
-]).then((values) => {
-    console.log(values);
+]).then((value) => {
     renderOrderSummary();
     renderPaymentSummary();
     renderCheckoutHeader();
