@@ -42,10 +42,12 @@ Promise.all([
 });
 */
 
-// loadProducts(() => {
-//     loadCart(() => {
-//         renderOrderSummary();
-//         renderPaymentSummary();
-//         renderCheckoutHeader();
-//     });
-// });
+/*
+loadProducts(() => {
+    loadCart(() => {
+        renderOrderSummary();
+        renderPaymentSummary();
+        renderCheckoutHeader();
+    });
+});
+*/
