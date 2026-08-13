@@ -1,7 +1,16 @@
-import { cart, addToCart, calculateCartQuantity } from '../data/cart.js';
-import { products, loadProducts } from '../data/products.js';
+import { cart, addToCart, calculateCartQuantity, loadCart } from '../data/cart.js';
+import { loadProductsFetch, products } from '../data/products.js';
 
-loadProducts(renderProductsGrid);
+async function loadPage() {
+    await loadProductsFetch();
+    await new Promise((resolve) => {
+        loadCart(() => {
+            resolve('value');
+        });
+    })
+    renderProductsGrid()
+}
+loadPage();
 
 function renderProductsGrid() {
     let productsHTML = '';
