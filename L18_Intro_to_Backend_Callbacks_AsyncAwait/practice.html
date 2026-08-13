@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+</head>
+<body>
+    <script>
+        // XMLHttpRequest
+        const xhr = new XMLHttpRequest()
+
+        xhr.addEventListener('load', () => {
+            console.log(xhr.response);
+        });
+
+        xhr.open('GET', 'https://supersimplebackend.dev/greeting');
+        xhr.send();
+
+        // fetch()
+        const promise = fetch(
+            'https://supersimplebackend.dev/greeting'
+        ).then((response) => {
+            return response.text();
+        }).then((text) => {
+            console.log(text);
+        });
+
+
+        // async await
+        async function greeting() {
+            const response = await fetch('https://supersimplebackend.dev/greeting');
+            const text = await response.text();
+            console.log(text);
+        }
+        greeting();
+
+        // fetch() and async await, create a POST request
+        async function postName() {
+            try {
+                const response =  await fetch('https://supersimplebackend.dev/greeting', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: 'Sheikh Nabeel'
+                    })
+                });
+
+                const greeting = await response.text();
+                console.log(greeting);
+            } catch (error) {
+                console.log(`Unexpected error: ${error}`);
+            }
+        }
+        postName();
+
+        // GET request to https://amazon.com
+        (async function () {
+            try {
+                const response = await fetch('https://amazon.com');
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.log(`CORS error. My request was blocked by the backend.`);
+            }
+        })();
+        // An error occurs: CORS
+        // (Cross-Origin Resource Sharing)
+        // This means the URL your code is running on (probably http://127.0.0.1:5500) is different than https://amazon.com, so Amazon's backend blocked your request for security reasons. My code is correct, Amazon needs to change some settings in their backend to allow you requests.
+
+        // POST request
+        (async function () {
+            try {
+                const response = await fetch('https://supersimplebackend.dev', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (response.status >= 400) {
+                    throw response;
+                }
+            } catch (error) {
+                if (error.status === 400) {
+                    console.log(await error.json());
+                } else {
+                    console.log("Network error. Please try again later.");
+                }
+            }
+        })();
+    </script>
+</body>
+</html>
