@@ -1,16 +1,15 @@
-import { cart, addToCart, calculateCartQuantity, loadCart } from '../data/cart.js';
+import { cart, addToCart, calculateCartQuantity, loadCartFetch } from '../data/cart.js';
 import { loadProductsFetch, products } from '../data/products.js';
 
-async function loadPage() {
-    await loadProductsFetch();
-    await new Promise((resolve) => {
-        loadCart(() => {
-            resolve('value');
-        });
-    })
-    renderProductsGrid()
-}
-loadPage();
+(async function () {
+    try {
+        await loadProductsFetch();
+        await loadCartFetch();
+    } catch (error) {
+        console.log('Unexpected error. Please try again leter.');
+    }
+    renderProductsGrid();
+})();
 
 function renderProductsGrid() {
     let productsHTML = '';

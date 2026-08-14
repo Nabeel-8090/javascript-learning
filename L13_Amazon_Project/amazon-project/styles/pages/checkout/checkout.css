@@ -211,11 +211,8 @@
 
 .zero-cart {
     pointer-events: none;
-}
-
-.zero-cart .place-order-button {
     background-color: rgb(255, 235, 120);
     color: #888;
     cursor: default;
-    border: none
+    border: none;
 }

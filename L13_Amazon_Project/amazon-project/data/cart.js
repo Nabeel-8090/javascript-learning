@@ -31,6 +31,11 @@ export function removeFromCart(cartItemId) {
     saveToStorage();
 }
 
+export function clearCart() {
+    cart.length = 0;
+    saveToStorage();
+}
+
 export function updateCartQuantity(cartItemId, quantity) {
     const cartItem = cart.find(cartItem => cartItem.productId === cartItemId);
 
@@ -80,4 +85,10 @@ export function loadCart(fun) {
 
   xhr.open('GET', 'https://supersimplebackend.dev/cart');
   xhr.send();
+}
+
+export async function loadCartFetch() {  // actually we are using this
+    const response = await fetch('https://supersimplebackend.dev/cart');
+    const data = await response.text();
+    console.log(data);
 }
