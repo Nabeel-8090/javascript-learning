@@ -1,9 +1,10 @@
 import { orders, addOrder } from '../data/orders.js';
 import { formatCurrency } from './utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-import { getProduct, loadProductsFetch  } from '../data/products.js';
+import { getProduct } from '../data/products.js';
 import { cart, calculateCartQuantity, addToCart } from '../data/cart.js';
 
+/*
 (async function () {
     try {
         await loadProductsFetch();
@@ -12,7 +13,9 @@ import { cart, calculateCartQuantity, addToCart } from '../data/cart.js';
     }
     renderOrders();
 })();
+*/
 
+renderOrders();
 function renderOrders() {
     orders.forEach((order) => {
         const orderHeader = `

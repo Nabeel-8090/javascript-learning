@@ -1,6 +1,7 @@
 import { cart, addToCart, calculateCartQuantity, loadCartFetch } from '../data/cart.js';
-import { loadProductsFetch, products } from '../data/products.js';
+import { products } from '../data/products.js';
 
+/*
 (async function () {
     try {
         await loadProductsFetch();
@@ -8,12 +9,30 @@ import { loadProductsFetch, products } from '../data/products.js';
     } catch (error) {
         console.log('Unexpected error. Please try again leter.');
     }
+    console.log(products);
     renderProductsGrid();
 })();
+*/
 
+renderProductsGrid();
 function renderProductsGrid() {
+    const url = new URL(window.location.href);
+    const searchQuery = url.searchParams.get('search');
+
+    let filteredProducts = products;
+    if (searchQuery) {
+        filteredProducts = products.filter((product) => {
+            return product.name.toLowerCase().includes(searchQuery.toLowerCase())
+                || product.keywords.some((keyword) =>
+                    keyword.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+        });
+    }
+
+    history.replaceState(null, '', 'amazon.html');
+
     let productsHTML = '';
-    products.forEach((product) => {
+    filteredProducts.forEach((product) => {
         productsHTML +=
         `<div class="product-container">
             <div class="product-image-container">
@@ -65,6 +84,9 @@ function renderProductsGrid() {
         </div>`;
     });
     document.querySelector(".products-grid").innerHTML = productsHTML;
+    if (filteredProducts.length === 0) {
+        document.querySelector(".products-grid").innerHTML = `<p>No products matched your search.</p>`;
+    }
 
     updateCartQuantity();
     function updateCartQuantity() {
@@ -85,7 +107,6 @@ function renderProductsGrid() {
         }, 2000);
     }   
 
-    let timeoutId;
     document.querySelectorAll(".add-to-cart-button").forEach((button) => {
         button.addEventListener("click", () => {
             const productContainer = button.closest(".product-container");
@@ -97,5 +118,21 @@ function renderProductsGrid() {
             updateCartQuantity();
             showAddedMessage(productContainer);
         });
+    });
+
+    function searchProducts() {
+        let searchQuery = document.querySelector(".search-bar");
+        if (searchQuery.value !== '') {
+            window.location.href = `amazon.html?search=${searchQuery.value}`;
+            searchQuery.value = '';
+        }
+    }
+    document.querySelector(".search-button").addEventListener('click', () => {
+        searchProducts();
+    });
+    document.querySelector(".search-bar").addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            searchProducts();
+        }
     });
 }

@@ -16,6 +16,7 @@ export class Product {
   name;
   rating;
   priceCents;
+  keywords;
 
   constructor(productDetails) {
     this.id = productDetails.id;
@@ -23,6 +24,7 @@ export class Product {
     this.name = productDetails.name;
     this.rating = productDetails.rating;
     this.priceCents = productDetails.priceCents;
+    this.keywords = productDetails.keywords;
   }
 
   getStarsUrl() {
@@ -71,8 +73,9 @@ export class Appliance extends Product {
   }
 }
 
-export let products = [];
+// export let products = [];
 
+/*
 export function loadProductsFetch() { // actually we are using this
   const promise = fetch(
     'https://supersimplebackend.dev/products'
@@ -92,7 +95,9 @@ export function loadProductsFetch() { // actually we are using this
   });
   return promise;
 }
+  */
 
+/*
 export function loadProducts(fun) {
   const xhr = new XMLHttpRequest();
 
@@ -116,9 +121,9 @@ export function loadProducts(fun) {
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
+*/
 
-/*
-export const products = [
+export let products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -799,4 +804,3 @@ export const products = [
   }
   return new Product(productDetails);
 });
-*/
